@@ -1,4 +1,7 @@
 # Gitignore
 
+# Videos not included
+*.mp4
+
 # VSCODE
 .vscode
