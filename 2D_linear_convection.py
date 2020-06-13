@@ -11,7 +11,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 nx = 81 # spacial points
 ny = 81
-nt = 100 #nt is the number of timesteps we want to calculate
+nt = 200 #nt is the number of timesteps we want to calculate
 dx = 2 / (nx - 1)
 dy = 2 / (ny - 1)
 sigma = 0.2
@@ -34,7 +34,7 @@ def iterate():
         row, col = u.shape
         for i in range(1,row):
             for j in range(1, col):
-                u[i, j] = un[i,j] - c * dt / dx * (un[i,j] - un[i-1,j]) - c * dt / dx * (un[i,j] - un[i,j-1])
+                u[i,j] = un[i,j] - c*dt/dx * (un[i,j] - un[i-1,j]) - c*dt/dy * (un[i,j] - un[i,j-1])
 
         u[0,:]  = 1
         u[-1,:] = 1
@@ -55,11 +55,11 @@ ax.set_zlim([1,2])
 def animate(i, surface):
     iterate()
     ax.collections.clear()
-    surface = ax.plot_surface(xx, yy, u, cmap="magma")
+    surface = ax.plot_surface(xx, yy, u, cmap="magma",edgecolor='none')
 
 # init_func=init, blit=True
 ani = animation.FuncAnimation(
     fig, animate, interval=1000/25, save_count=nt, frames=nt, fargs=(surface))
 
-ani.save("2D_linear_convection.mp4")
+ani.save("2D_linear_convection.mp4",dpi=600)
 # plt.show()

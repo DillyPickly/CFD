@@ -1,5 +1,8 @@
 # Gitignore
 
+# Anything in the results directory
+results/*
+
 # Videos not included
 *.mp4
 
