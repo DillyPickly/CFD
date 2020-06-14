@@ -3,8 +3,9 @@
 # Anything in the results directory
 results/*
 
-# Videos not included
+# Photos and Videos not included
 *.mp4
+*.png
 
 # VSCODE
 .vscode
